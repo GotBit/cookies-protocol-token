@@ -34,18 +34,21 @@ $ yarn coverage
 
 ```text
   Token
-    ✔ should mint tokens to user only by owner (57ms)
-    ✔ should transfer tokens if user is not locked (54ms)
-    ✔ should deny transfer while user is locked (98ms)
-    ✔ should let user transfer tokens if owner unlock him (76ms)
-    ✔ should set unlock times for user only by owner
-    ✔ should deny set unlock times with different length array
-    ✔ should set antisnipe address only by owner
-    ✔ should disable antisnipe in one-way only by owner (41ms)
-    ✔ should call antisnipe contact on if enable (108ms)
+    Mint
+      ✔ should mint tokens to user only by owner (66ms)
+    Time-lock transfer
+      ✔ should transfer tokens if user is not locked (53ms)
+      ✔ should deny transfer while user is locked (100ms)
+      ✔ should let user transfer tokens if owner unlock him (76ms)
+      ✔ should set unlock times for user only by owner
+      ✔ should deny set unlock times with different length array
+    Antisnipe
+      ✔ should set antisnipe address only by owner
+      ✔ should disable antisnipe in one-way only by owner (40ms)
+      ✔ should call antisnipe contract when enable (114ms)
 
 
-  9 passing (701ms)
+  9 passing (708ms)
 
 ----------------------|----------|----------|----------|----------|----------------|
 File                  |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
