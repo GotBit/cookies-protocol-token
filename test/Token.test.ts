@@ -172,7 +172,7 @@ describe('Token', () => {
       'Cant change state of antisnipe disability'
     ).reverted
   })
-  it('should call antisnipe contact on if enable', async () => {
+  it('should call antisnipe contract when enable', async () => {
     const [deployer, user, anotherUser] = await ethers.getSigners()
     const { token, anitsnipeMock } = await useContracts()
 
