@@ -97,10 +97,10 @@ API_FTM=
 API_ARBITRUM=
 ```
 
-To deploy contracts on `Binance mainnet`
+To deploy contracts on `Polygon chain`
 
 ```bash
-$ yarn deploy --network bsc_mainnet
+$ yarn deploy --network polygon_mainnet
 ```
 
 ### Deployments
@@ -109,11 +109,19 @@ Deployments on mainnets and testnets store in `./deployments`
 
 ### Verify
 
-To verify contracts on `Binanace mainnet`
+To verify contracts on `Polygon chain`
 
 ```bash
-$ yarn verify --network bsc_mainnet
+$ yarn verify --network polygon_mainnet
 ```
+
+## Tokenomics
+
+**Currency Name**: `Cookies Protocol`
+**Token symbol**: `CP`
+**Supported Chain**: `MATIC (Polygon Chain)`
+**Number of issued CP**: `100,000,000,000,000 CP`
+**Decimal number**: `18`
 
 ## Custom functionality
 
