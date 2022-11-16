@@ -117,11 +117,11 @@ $ yarn verify --network polygon_mainnet
 
 ## Tokenomics
 
-**Currency Name**: `Cookies Protocol`
-**Token symbol**: `CP`
-**Supported Chain**: `MATIC (Polygon Chain)`
-**Number of issued CP**: `100,000,000,000,000 CP`
-**Decimal number**: `18`
+- **Currency Name**: `Cookies Protocol`
+- **Token symbol**: `CP`
+- **Supported Chain**: `MATIC (Polygon Chain)`
+- **Number of issued CP**: `100,000,000,000,000 CP`
+- **Decimal number**: `18`
 
 ## Custom functionality
 
