@@ -13,6 +13,7 @@ $ yarn testf
 ## Project Structure
 
 This a hardhat typescript project with `hardhat-deploy` extension.
+Solidity version `0.8.15`
 
 ### Tests
 
