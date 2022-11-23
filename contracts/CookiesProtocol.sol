@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.15;
 
 /**
  * @title CookiesProtocol
@@ -8,7 +8,15 @@ pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
-import './mock/AntisnipeMock.sol';
+
+interface IAntisnipe {
+    function assureCanTransfer(
+        address sender,
+        address from,
+        address to,
+        uint256 amount
+    ) external;
+}
 
 contract CookiesProtocol is ERC20Burnable, Ownable {
     /// @dev collection of unlock times for user
