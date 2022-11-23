@@ -53,14 +53,14 @@ contract CookiesProtocol is ERC20Burnable, Ownable {
         _mint(user, amount);
     }
 
-    /// @dev sets unlock times for users (only owner)
+    /// @dev sets unlock times for users (only owner) (100 users per call)
     /// @param users addresses of users
     /// @param timestamps unlock timestamps corresponding to users
     function setUnlockTimes(address[] calldata users, uint256[] calldata timestamps)
         external
         onlyOwner
     {
-        require(users.length <= 300, 'Too much elements in array');
+        require(users.length <= 100, 'Too much elements in array');
         require(timestamps.length == users.length, 'Different sizes of arrays');
         uint256 length = users.length;
         for (uint256 i; i < length; ++i) _unlockTimes[users[i]] = timestamps[i];
