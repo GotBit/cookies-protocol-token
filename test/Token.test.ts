@@ -195,5 +195,43 @@ describe('Token', () => {
         'Cant change state of antisnipe disability'
       ).reverted
     })
+    it('should call antisnipe contract when enable', async () => {
+      const [deployer, user, anotherUser] = await ethers.getSigners()
+      const { token, antisnipeMock } = await useContracts()
+
+      // transfer some tokens to user
+      await token.connect(deployer).transfer(user.address, initAmount)
+      expect(await token.balanceOf(user.address), 'Correct transfered amount').eq(
+        initAmount
+      )
+
+      await expect(
+        token.connect(user).setAntisnipeAddress(antisnipeMock.address),
+        'User cant setup antisnipe address'
+      ).reverted
+
+      await token.connect(deployer).setAntisnipeAddress(antisnipeMock.address)
+      expect(await token.antisnipe()).eq(antisnipeMock.address)
+
+      const amount = '1'.toBigNumber(18)
+      await token.connect(user).transfer(anotherUser.address, amount)
+
+      expect(await antisnipeMock.lastAmount(), 'Correct amount').eq(amount)
+      expect(await antisnipeMock.lastSender(), 'Correct sender').eq(user.address)
+      expect(await antisnipeMock.lastFrom(), 'Correct from').eq(user.address)
+      expect(await antisnipeMock.lastTo(), 'Correct to').eq(anotherUser.address)
+
+      /// disable antisnipe
+      await token.connect(deployer).setAntisnipeDisable()
+
+      const newAmount = amount.sub(1)
+      await token.connect(anotherUser).transfer(user.address, newAmount)
+
+      /// nothing changed because antisnipe is disable
+      expect(await antisnipeMock.lastAmount()).not.eq(newAmount)
+      expect(await antisnipeMock.lastSender()).not.eq(anotherUser.address)
+      expect(await antisnipeMock.lastFrom()).not.eq(anotherUser.address)
+      expect(await antisnipeMock.lastTo()).not.eq(user.address)
+    })
   })
 })

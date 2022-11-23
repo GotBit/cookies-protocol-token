@@ -1,10 +1,11 @@
 import { deployments, ethers } from 'hardhat'
 
-import type { CookiesProtocol } from '@/typechain'
+import type { AntisnipeMock, CookiesProtocol } from '@/typechain'
 
 export const useContracts = async () => {
   return {
     token: await ethers.getContract<CookiesProtocol>('CookiesProtocol'),
+    antisnipeMock: await ethers.getContract<AntisnipeMock>('AntisnipeMock'),
   }
 }
 
