@@ -142,7 +142,7 @@ describe('Token', () => {
         'Cant set unlock times with different array sizes'
       ).revertedWith('Different sizes of arrays')
     })
-    it('should deny set more then 300 users per time', async () => {
+    it('should deny set more then 300 users per call', async () => {
       const [admin] = await ethers.getSigners()
       const { token } = await useContracts()
 

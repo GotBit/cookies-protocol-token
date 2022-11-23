@@ -35,20 +35,21 @@ $ yarn coverage
 ```text
   Token
     Mint
-      ✔ should mint tokens to user only by owner (66ms)
+      ✔ should mint tokens to user only by owner (61ms)
     Time-lock transfer
-      ✔ should transfer tokens if user is not locked (53ms)
-      ✔ should deny transfer while user is locked (100ms)
-      ✔ should let user transfer tokens if owner unlock him (76ms)
+      ✔ should transfer tokens if user is not locked (47ms)
+      ✔ should deny transfer while user is locked (96ms)
+      ✔ should let user transfer tokens if owner unlock him (70ms)
       ✔ should set unlock times for user only by owner
       ✔ should deny set unlock times with different length array
+      ✔ should deny set more then 300 users per call (209ms)
     Antisnipe
       ✔ should set antisnipe address only by owner
-      ✔ should disable antisnipe in one-way only by owner (40ms)
-      ✔ should call antisnipe contract when enable (114ms)
+      ✔ should disable antisnipe in one-way only by owner
+      ✔ should call antisnipe contract when enable (103ms)
 
 
-  9 passing (708ms)
+  10 passing (998ms)
 
 ----------------------|----------|----------|----------|----------|----------------|
 File                  |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
@@ -152,10 +153,10 @@ Ability to lock tokens for the user up to a certain moment
 #### Function `setUnlockTimes`
 
 ```solidity
-function setUnlockTimes(address[] memory users, uint256[] memory timestamps) external onlyOwner
+function setUnlockTimes(address[] calldata users, uint256[] calldata timestamps) external onlyOwner
 ```
 
-Only the owner can set the unlock time for users. This prevents users from transferring the token before the unlock time
+Only the owner can set the unlock time for users (limit per call is 300 users). This prevents users from transferring the token before the unlock time
 
 ### Function `mint`
 
