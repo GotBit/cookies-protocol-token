@@ -142,6 +142,24 @@ describe('Token', () => {
         'Cant set unlock times with different array sizes'
       ).revertedWith('Different sizes of arrays')
     })
+    it('should deny set more then 300 users per time', async () => {
+      const [admin] = await ethers.getSigners()
+      const { token } = await useContracts()
+
+      const MAX_AMOUNT = 300
+
+      const users = Array(MAX_AMOUNT).fill(ethers.constants.AddressZero)
+      const timestamps = Array(MAX_AMOUNT).fill(0)
+
+      await expect(
+        token
+          .connect(admin)
+          .setUnlockTimes([...users, ethers.constants.AddressZero], [...timestamps, 0]),
+        'Revert: Too much elements in array'
+      ).revertedWith('Too much elements in array')
+
+      await token.connect(admin).setUnlockTimes(users, timestamps)
+    })
   })
   describe('Antisnipe', () => {
     it('should set antisnipe address only by owner', async () => {
