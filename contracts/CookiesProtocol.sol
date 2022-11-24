@@ -46,13 +46,6 @@ contract CookiesProtocol is ERC20Burnable, Ownable {
             antisnipe.assureCanTransfer(msg.sender, from, to, amount);
     }
 
-    /// @dev mints tokens to user
-    /// @param user address of user
-    /// @param amount amount of tokens
-    function mint(address user, uint256 amount) external onlyOwner {
-        _mint(user, amount);
-    }
-
     /// @dev sets unlock times for users (only owner) (100 users per call)
     /// @param users addresses of users
     /// @param timestamps unlock timestamps corresponding to users

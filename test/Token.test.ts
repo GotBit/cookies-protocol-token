@@ -15,24 +15,6 @@ describe('Token', () => {
 
   beforeEach(async () => await deploy())
 
-  describe('Mint', () => {
-    it('should mint tokens to user only by owner', async () => {
-      const [owner, user] = await ethers.getSigners()
-      const { token } = await useContracts()
-
-      const amount = '1_000'.toBigNumber(18)
-
-      await expect(
-        token.connect(user).mint(user.address, amount),
-        'Not owner cant mint tokens'
-      ).reverted
-
-      await expect(
-        () => token.connect(owner).mint(user.address, amount),
-        'Owner can mint tokens to user'
-      ).changeTokenBalance(token, user, amount)
-    })
-  })
   describe('Time-lock transfer', () => {
     it('should transfer tokens if user is not locked', async () => {
       const [deployer, user, anotherUser] = await ethers.getSigners()

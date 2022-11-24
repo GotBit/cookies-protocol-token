@@ -35,22 +35,20 @@ $ yarn coverage
 
 ```text
   Token
-    Mint
-      ✔ should mint tokens to user only by owner (60ms)
     Time-lock transfer
-      ✔ should transfer tokens if user is not locked (45ms)
-      ✔ should deny transfer while user is locked (96ms)
-      ✔ should let user transfer tokens if owner unlock him (73ms)
+      ✔ should transfer tokens if user is not locked (74ms)
+      ✔ should deny transfer while user is locked (105ms)
+      ✔ should let user transfer tokens if owner unlock him (72ms)
       ✔ should set unlock times for user only by owner
       ✔ should deny set unlock times with different length array
-      ✔ should deny set more than 100 users per call (90ms)
+      ✔ should deny set more than 100 users per call (93ms)
     Antisnipe
       ✔ should set antisnipe address only by owner
       ✔ should disable antisnipe in one-way only by owner (38ms)
-      ✔ should call antisnipe contract when enable (106ms)
+      ✔ should call antisnipe contract when enable (110ms)
 
 
-  10 passing (771ms)
+  9 passing (787ms)
 
 ----------------------|----------|----------|----------|----------|----------------|
 File                  |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
@@ -122,7 +120,7 @@ $ yarn verify --network polygon_mainnet
 - **Currency Name**: `Cookies Protocol`
 - **Token symbol**: `CP`
 - **Supported Chain**: `MATIC (Polygon Chain)`
-- **Number of issued CP**: `100,000,000,000,000 CP`
+- **Total supply**: `100,000,000,000,000 CP`
 - **Decimal number**: `18`
 
 ## Custom functionality
@@ -158,14 +156,6 @@ function setUnlockTimes(address[] calldata users, uint256[] calldata timestamps)
 ```
 
 Only the owner can set the unlock time for users (100 users per call). This prevents users from transferring the token before the unlock time
-
-### Function `mint`
-
-```solidity
-function mint(address user, uint256 amount) external onlyOwner
-```
-
-Only owner can mint tokens
 
 ### Overriding `_beforeTokenTransfer`
 
