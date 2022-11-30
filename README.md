@@ -123,6 +123,8 @@ $ yarn verify --network polygon_mainnet
 - **Total supply**: `100,000,000,000,000 CP`
 - **Decimal number**: `18`
 
+[Tokenomics](./Cookies%20Tokenomics.pdf)
+
 ## Custom functionality
 
 ### Antisnipe
